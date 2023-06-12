@@ -15,6 +15,7 @@ variable "ecs_task_execution_role" {
 
 variable "app_image" {
   default     = "nginx:latest"
+  # default     = "142025588201.dkr.ecr.us-east-1.amazonaws.com/ecr-demo:latest"
   description = "docker image to run in this ECS cluster"
 }
 

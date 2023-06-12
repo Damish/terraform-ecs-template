@@ -41,3 +41,25 @@ resource "aws_security_group" "ecs_sg" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 }
+
+
+# this security group for EFS
+resource "aws_security_group" "efs_sg" {
+  name        = "tf-testapp-efs-security-group"
+  description = "allow inbound access"
+  vpc_id      = aws_vpc.test-vpc.id
+
+  ingress {
+    from_port       = 2049
+    to_port         = 2049
+    protocol        = "tcp"
+    security_groups = [aws_security_group.ecs_sg.id]
+  }
+
+  egress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    security_groups = [aws_security_group.ecs_sg.id]
+  }
+}
