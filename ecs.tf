@@ -49,7 +49,7 @@ resource "aws_ecs_task_definition" "test-def" {
   volume {
     name = "tf-efs-volume"
     efs_volume_configuration {
-      file_system_id = aws_efs_file_system.test-efs.id
+      file_system_id = "${aws_efs_file_system.test-efs.id}"
       transit_encryption = "ENABLED"
       transit_encryption_port = 2999
       authorization_config {
