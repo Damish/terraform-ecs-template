@@ -16,6 +16,8 @@ data "template_file" "testapp" {
 
 resource "aws_efs_file_system" "test-efs" {
   creation_token = "tf-test-ecs-efs"
+  performance_mode = "generalPurpose"
+  throughput_mode = "bursting"
 }
 
 resource "aws_efs_mount_target" "mount" {
