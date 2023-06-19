@@ -42,3 +42,10 @@ variable "fargate_memory" {
   default     = "2048"
   description = "Fargate instance memory to provision (in MiB) not MB"
 }
+
+variable "tags" {
+  default     = {
+    "Environment":"DEV"
+  }
+  description = "tags"
+}

@@ -1,5 +1,7 @@
 resource "aws_ecs_cluster" "test-cluster" {
   name = "tf-myapp-cluster"
+
+  tags = var.tags
 }
 
 data "template_file" "testapp" {
@@ -60,6 +62,8 @@ resource "aws_ecs_task_definition" "test-def" {
     }
   }
 
+  tags = var.tags
+
   depends_on = [
     aws_efs_file_system.test-efs,
     aws_efs_access_point.efs-access-point
@@ -87,6 +91,8 @@ resource "aws_ecs_service" "test-service" {
     container_name   = "testapp"
     container_port   = var.app_port
   }
+
+  tags = var.tags
 
   depends_on = [aws_alb_listener.testapp, aws_iam_role_policy_attachment.ecs_task_execution_role]
 }
